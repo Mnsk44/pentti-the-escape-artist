@@ -3,22 +3,21 @@
 """
 
 import random
-from typing import Callable, List
+from typing import List
 
-from character.pentti import Pentti
+from character.trackerpentti import TrackerPentti
 from map.map import Map
-from util.constants import BLOCK, EXIT, VISITED, PENTTI
+from util.constants import EXIT, VISITED, PENTTI
 
 
-class RandomPentti(Pentti):
+class RandomPentti(TrackerPentti):
     """
     Pentti doesn't have the map and will randomly walk in the maze, trying to
     find an exit.
     """
 
     def __init__(self, map: Map) -> None:
-        super().__init__(*map.start_position())
-        self._map = map
+        super().__init__(map)
         self._history: List[Map] = [map]
 
     def random_escape(self, limit = 10000) -> None:
@@ -36,31 +35,3 @@ class RandomPentti(Pentti):
             self._map[self.position()] = PENTTI
         print(f"Pentti was exhausted after {limit} steps, Pentti did not escape...")
         print(self._map)
-
-    def possible_moves(self) -> List[Callable]:
-        moves = []
-        if self._can_move_left():
-            moves.append(self.move_left)
-        if self._can_move_right():
-            moves.append(self.move_right)
-        if self._can_move_up():
-            moves.append(self.move_up)
-        if self._can_move_down():
-            moves.append(self.move_down)
-        return moves
-
-    def _can_move_left(self) -> bool:
-        row, col = self.position()
-        return self._map.is_available_position(row, col-1)
-
-    def _can_move_right(self) -> bool:
-        row, col = self.position()
-        return self._map.is_available_position(row, col+1)
-
-    def _can_move_up(self) -> bool:
-        row, col = self.position()
-        return self._map.is_available_position(row-1, col)
-
-    def _can_move_down(self) -> bool:
-        row, col = self.position()
-        return self._map.is_available_position(row+1, col)
