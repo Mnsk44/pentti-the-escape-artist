@@ -30,3 +30,11 @@ def test_init_map(map):
 
     assert map.start_position() == start
     assert map._size == size
+
+def test_getitem_setitem(map):
+    path, _, _ = map
+    map = Map(path)
+
+    assert map[(0, 0)] == "#"
+    map[(0, 0)] = "X"
+    assert map[(0, 0)] == "X"

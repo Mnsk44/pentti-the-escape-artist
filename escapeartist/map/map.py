@@ -24,6 +24,14 @@ class Map:
     def __str__(self) -> str:
         return "\n".join(["".join(map_row) for map_row in self._map])
 
+    def __getitem__(self, key: Tuple[int, int]) -> str:
+        row, col = key
+        return self._map[row][col]
+
+    def __setitem__(self, key: Tuple[int, int], value: str) -> None:
+        row, col = key
+        self._map[row][col] = value
+
     def _load_map(self, path: str) -> List[List[str]]:
         with open(path, "r") as map_file:
             return [list(line.rstrip()) for line in map_file.readlines()]
