@@ -11,5 +11,17 @@ TL;DR; A short python project testing different maze solving algorithms.
 
 ---
 
-Usage:
-TBA
+Run the CLI with `escapeartist/main.py`
+```bash
+usage: main.py [-h] -m MAP -p {random,righthandrule} [-l LIMIT]
+
+CLI to helping Pentti escape his doom.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -m MAP, --map MAP     Path to a map text file
+  -p {random,righthandrule}, --pentti {random,righthandrule}
+                        Which solving algorithm to use
+  -l LIMIT, --limit LIMIT
+                        Limit Pentti's available moves
+```
