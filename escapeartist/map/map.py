@@ -52,3 +52,9 @@ class Map:
 
     def start_position(self):
         return self._start_pos
+
+    def is_available_position(self, row, col) -> bool:
+        try:
+            return self[(row, col)] != BLOCK
+        except IndexError:
+            return False
