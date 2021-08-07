@@ -4,11 +4,8 @@ Class representing the map of a maze
 
 from typing import List, Tuple
 
+from util.constants import BLOCK, EXIT, SPACE, START
 
-START = "^"
-BLOCK = "#"
-SPACE = " "
-EXIT = "E"
 
 class Map:
     """
