@@ -23,8 +23,8 @@ class RandomPentti(TrackerPentti):
     def random_escape(self, limit = 10000) -> None:
         for round in range(limit):
             if self._map[self.position()] == EXIT:
-                print(f"Pentti escaped in {round} steps")
                 print(self._map)
+                print(f"Pentti escaped in {round} steps")
                 return
             self._history.append(self._map)
 
@@ -33,5 +33,5 @@ class RandomPentti(TrackerPentti):
 
             random.choice(movements)()
             self._map[self.position()] = PENTTI
-        print(f"Pentti was exhausted after {limit} steps, Pentti did not escape...")
         print(self._map)
+        print(f"Pentti was exhausted after {limit} steps, Pentti did not escape...")
