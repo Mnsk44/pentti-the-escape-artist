@@ -7,7 +7,7 @@ from typing import List
 
 from character.trackerpentti import TrackerPentti
 from map.map import Map
-from util.constants import EXIT, VISITED, PENTTI
+from util.constants import EXIT, VICTORY, VISITED, PENTTI
 
 
 class RandomPentti(TrackerPentti):
@@ -28,6 +28,7 @@ class RandomPentti(TrackerPentti):
 
             random.choice(movements)()
             if self._map[self.position()] == EXIT:
+                self._map[self.position()] = VICTORY
                 print(self._map)
                 print(f"Pentti escaped in {round} steps")
                 return
