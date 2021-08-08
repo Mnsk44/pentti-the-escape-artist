@@ -4,6 +4,7 @@ CLI entry point for the maze solver.
 
 import argparse
 
+from character.bfspentti import BFSPentti
 from character.randompentti import RandomPentti
 from character.righthandpentti import RightHandPentti
 from character.usablepentti import UsablePentti
@@ -22,7 +23,7 @@ parser.add_argument(
     "-p",
     "--pentti",
     required=True,
-    choices=["random", "righthandrule"],
+    choices=["random", "righthandrule", "bfs"],
     dest="pentti",
     help="Which solving algorithm to use",
 )
@@ -46,5 +47,7 @@ if __name__ == "__main__":
         pentti = RandomPentti(map)
     if args.pentti == "righthandrule":
         pentti = RightHandPentti(map)
+    if args.pentti == "bfs":
+        pentti = BFSPentti(map)
 
     pentti.escape_maze(args.limit)
