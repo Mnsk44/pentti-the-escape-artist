@@ -32,8 +32,8 @@ class MapToImage:
         im.putdata(colored_map)
         return im
 
-    def save_last_png(self):
-        self._images[-1].save("./solution.png")
+    def save_last_png(self, path = "./solution.png"):
+        self._images[-1].save(path, format="png")
 
     def save_images_as_gif(self):
         self._images[0].save(
