@@ -50,8 +50,13 @@ class Map:
     def _determine_size(self) -> Tuple[int, int]:
         return (len(self._map), len(self._map[0]))
 
+    @property
     def start_position(self):
         return self._start_pos
+
+    @start_position.setter
+    def start_position(self, value: Tuple[int, int]):
+        self._start_pos = value
 
     def is_available_position(self, row, col) -> bool:
         try:

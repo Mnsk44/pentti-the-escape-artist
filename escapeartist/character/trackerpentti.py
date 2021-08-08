@@ -20,7 +20,7 @@ class TrackerPentti(Pentti):
     can move into.
     """
     def __init__(self, map: Map) -> None:
-        super().__init__(*map.start_position())
+        super().__init__(*map.start_position)
         self._map = map
         self._history: List[Map] = [map]
 
