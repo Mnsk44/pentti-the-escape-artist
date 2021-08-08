@@ -9,6 +9,8 @@ from character.randompentti import RandomPentti
 from character.righthandpentti import RightHandPentti
 from character.usablepentti import UsablePentti
 from map.map import Map
+from map.maptoimage import MapToImage
+
 
 parser = argparse.ArgumentParser(description="CLI to helping Pentti escape his doom.")
 parser.add_argument(
@@ -36,6 +38,20 @@ parser.add_argument(
     help="Limit Pentti's available moves",
     default=1000,
 )
+parser.add_argument(
+    "-i",
+    "--image",
+    action="store_true",
+    dest="image",
+    help="Prints the solution as 'solution.png'"
+)
+parser.add_argument(
+    "-g",
+    "--gif",
+    action="store_true",
+    dest="gif",
+    help="Prints the solution steps as 'solution.gif'"
+)
 
 if __name__ == "__main__":
     args = parser.parse_args()
@@ -51,3 +67,13 @@ if __name__ == "__main__":
         pentti = BFSPentti(map)
 
     pentti.escape_maze(args.limit)
+
+    if args.gif:
+        maptoimage = MapToImage()
+        maptoimage.convert(pentti._history)
+        maptoimage.save_images_as_gif()
+
+    if args.image:
+        maptoimage = MapToImage()
+        maptoimage.convert([pentti._map])
+        maptoimage.save_last_png()
