@@ -11,7 +11,7 @@ TL;DR; A short python project testing different maze solving algorithms.
 
 ---
 
-Run the CLI with `escapeartist/main.py`
+##Run the CLI with `escapeartist/main.py`
 ```bash
 usage: main.py [-h] -m MAP -p {random,righthandrule,bfs} [-l LIMIT] [-i] [-g]
 
@@ -27,3 +27,15 @@ optional arguments:
   -i, --image           Prints the solution as 'solution.png'
   -g, --gif             Prints the solution steps as 'solution.gif'
 ```
+
+---
+## Run it in Docker
+1. Insert your maps into folder `maps/` in the project root
+2. `docker build --tag escapeartist --target cli .`
+3. `docker run -it --rm  escapeartist --help`
+
+### There is also a UI for Pentti, but note that this is not finalized as of now.
+1. Insert your maps into folder `maps/` in the project root
+2. `docker build --tag escapeartist --target ui .`
+3. `docker run -it --rm -p 8080:8080  escapeartist`
+4. Browse to `localhost:8080`
