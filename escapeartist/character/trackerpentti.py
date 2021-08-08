@@ -11,6 +11,7 @@ from typing import Callable, List
 
 from character.pentti import Pentti
 from map.map import Map
+from util.constants import EXIT, PENTTI, VISITED, VICTORY
 
 
 class TrackerPentti(Pentti):
@@ -49,3 +50,31 @@ class TrackerPentti(Pentti):
     def _can_move_down(self) -> bool:
         row, col = self.position()
         return self._map.is_available_position(row+1, col)
+
+    def _mark_visited(self) -> None:
+        self._map[self.position()] = VISITED
+
+    def _mark_current_position(self) -> None:
+        self._map[self.position()] = PENTTI
+
+    def _mark_winning_position(self) -> None:
+        self._map[self.position()] = VICTORY
+
+    def _win_condition(self) -> bool:
+        return self._map[self.position()] == EXIT
+
+    def _solve_maze(self, move_rule: Callable, limit: int = 10000) -> None:
+        for round in range(limit):
+            self._history.append(self._map)
+            self._mark_visited()
+
+            move_rule()
+
+            if self._win_condition():
+                self._mark_winning_position()
+                print(self._map)
+                print(f"Pentti escaped in {round} steps")
+                return
+            self._mark_current_position()
+        print(self._map)
+        print(f"Pentti was exhausted after {limit} steps, Pentti did not escape...")

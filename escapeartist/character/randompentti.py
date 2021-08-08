@@ -21,17 +21,8 @@ class RandomPentti(TrackerPentti):
         self._history: List[Map] = [map]
 
     def random_escape(self, limit = 10000) -> None:
-        for round in range(limit):
-            self._history.append(self._map)
-            movements = self.possible_moves()
-            self._map[self.position()] = VISITED
+        self._solve_maze(self._random_move, limit)
 
-            random.choice(movements)()
-            if self._map[self.position()] == EXIT:
-                self._map[self.position()] = VICTORY
-                print(self._map)
-                print(f"Pentti escaped in {round} steps")
-                return
-            self._map[self.position()] = PENTTI
-        print(self._map)
-        print(f"Pentti was exhausted after {limit} steps, Pentti did not escape...")
+    def _random_move(self):
+        movements = self.possible_moves()
+        random.choice(movements)()

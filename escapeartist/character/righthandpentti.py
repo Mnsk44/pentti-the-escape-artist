@@ -24,20 +24,7 @@ class RightHandPentti(TrackerPentti):
         self._history: List[Map] = [map]
 
     def right_hand_escape(self, limit = 10000) -> None:
-        for round in range(limit):
-            self._history.append(self._map)
-            self._map[self.position()] = VISITED
-
-            self._move_by_right_hand_rule()
-
-            if self._map[self.position()] == EXIT:
-                self._map[self.position()] = VICTORY
-                print(self._map)
-                print(f"Pentti escaped in {round} steps")
-                return
-            self._map[self.position()] = PENTTI
-        print(self._map)
-        print(f"Pentti was exhausted after {limit} steps, Pentti did not escape...")
+        self._solve_maze(self._move_by_right_hand_rule, limit)
 
     def _move_by_right_hand_rule(self):
         priorities = self._move_priority()
