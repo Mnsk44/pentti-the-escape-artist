@@ -39,3 +39,22 @@ optional arguments:
 2. `docker build --tag escapeartist --target ui .`
 3. `docker run -it --rm -p 8080:8080  escapeartist`
 4. Browse to `localhost:8080`
+
+---
+
+## Notes on development:
+
+It's lacking a lot of testing, I know :)
+
+At this point I decided to focus on the extendability of the system (for my own enjoyment, new features are fun!).
+
+Pentti evolved into three algorithms, one interface and three ways of interacting
+with the system:
+
+Pentti -> TrackerPentti -> RandomPentti + RightHandPentti + ~BFSPentti
+|
+UsablePentti -> CLI + UI
+|
+Python + Docker + Dash
+|
+(Printed map, png map)
