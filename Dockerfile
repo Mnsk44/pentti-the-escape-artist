@@ -11,3 +11,7 @@ COPY maps/ /app/maps
 ENV PYTHONPATH="/app/escapeartist:${PYTHONPATH}"
 
 ENTRYPOINT ["python3", "-u", "escapeartist/main.py"]
+
+FROM cli as ui
+
+ENTRYPOINT [ "python3", "-u", "escapeartist/server/index.py" ]

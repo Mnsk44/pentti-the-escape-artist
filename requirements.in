@@ -4,3 +4,4 @@ black
 mypy
 Pillow
 dash
+dash-bootstrap-components
