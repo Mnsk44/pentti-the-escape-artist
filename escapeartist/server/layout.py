@@ -43,6 +43,20 @@ layout = html.Div([
         ],
         style=centerall,
     ),
+    html.Div(
+        [
+            html.P("Choose a map:"),
+            dcc.Dropdown(
+                id="map-dropdown",
+                options=[
+                    {"label": "Map 1", "value": "/app/maps/maze-task-first.txt"},
+                    {"label": "Map 2", "value": "/app/maps/maze-task-second.txt"},
+                ],
+                value="/app/maps/maze-task-first.txt"
+            )
+        ],
+        style=centerall,
+    ),
     html.Div(id="result-div-evil-text", style=centerall),
     html.Div(id="result-div-evil-png", style=centerall),
     html.Div(id="result-div-neutral-text", style=centerall),

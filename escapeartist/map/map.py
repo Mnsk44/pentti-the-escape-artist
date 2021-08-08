@@ -4,7 +4,7 @@ Class representing the map of a maze
 
 from typing import List, Tuple
 
-from util.constants import BLOCK, EXIT, SPACE, START
+from util.constants import BLOCK, START
 
 
 class Map:

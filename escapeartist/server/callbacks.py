@@ -22,11 +22,11 @@ from util.constants import VICTORY
 @app.callback(
     [Output("result-div-evil-text", "children"), Output("result-div-evil-png", "children")],
     [Input("evil-btn", "n_clicks")],
-    [State("limit-input", "value")],
+    [State("limit-input", "value"), State("map-dropdown", "value")],
     prevent_initial_call=True
 )
-def evil_random_escape(click, limit):
-    map = Map("/app/maps/maze-task-first.txt")
+def evil_random_escape(click, limit, map_path):
+    map = Map(map_path)
     pentti = RandomPentti(map)
     pentti.escape_maze(limit)
     if pentti._map[pentti.position()] == VICTORY:
@@ -59,11 +59,11 @@ def evil_random_escape(click, limit):
 @app.callback(
     [Output("result-div-neutral-text", "children"), Output("result-div-neutral-png", "children")],
     [Input("neutral-btn", "n_clicks")],
-    [State("limit-input", "value")],
+    [State("limit-input", "value"), State("map-dropdown", "value")],
     prevent_initial_call=True
 )
-def right_hand_escape(click, limit):
-    map = Map("/app/maps/maze-task-first.txt")
+def right_hand_escape(click, limit, map_path):
+    map = Map(map_path)
     pentti = RightHandPentti(map)
     pentti.escape_maze(limit)
     if pentti._map[pentti.position()] == VICTORY:
@@ -96,11 +96,11 @@ def right_hand_escape(click, limit):
 @app.callback(
     [Output("result-div-good-text", "children"), Output("result-div-good-png", "children")],
     [Input("good-btn", "n_clicks")],
-    [State("limit-input", "value")],
+    [State("limit-input", "value"), State("map-dropdown", "value")],
     prevent_initial_call=True
 )
-def bfs_escape(click, limit):
-    map = Map("/app/maps/maze-task-first.txt")
+def bfs_escape(click, limit, map_path):
+    map = Map(map_path)
     pentti = BFSPentti(map)
     pentti.escape_maze(limit)
     if pentti._count_path_length() < limit:
