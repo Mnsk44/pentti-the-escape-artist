@@ -6,11 +6,11 @@ import random
 from typing import List
 
 from character.trackerpentti import TrackerPentti
+from character.usablepentti import UsablePentti
 from map.map import Map
-from util.constants import EXIT, VICTORY, VISITED, PENTTI
 
 
-class RandomPentti(TrackerPentti):
+class RandomPentti(TrackerPentti, UsablePentti):
     """
     Pentti doesn't have the map and will randomly walk in the maze, trying to
     find an exit.
@@ -20,7 +20,10 @@ class RandomPentti(TrackerPentti):
         super().__init__(map)
         self._history: List[Map] = [map]
 
-    def random_escape(self, limit = 10000) -> None:
+    def escape_maze(self, limit: int = 10000):
+        self._random_escape(limit)
+
+    def _random_escape(self, limit = 10000) -> None:
         self._solve_maze(self._random_move, limit)
 
     def _random_move(self):

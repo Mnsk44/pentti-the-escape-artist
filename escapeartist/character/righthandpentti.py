@@ -4,15 +4,13 @@ Right Hand Rule algorithm for Pentti to solve the maze with
 
 from typing import List
 
-from map.map import Map
-from util.constants import (
-    DOWN, EXIT, LEFT, PENTTI, RIGHT, UP, VICTORY, VISITED
-)
-
 from character.trackerpentti import TrackerPentti
+from character.usablepentti import UsablePentti
+from map.map import Map
+from util.constants import DOWN, LEFT, RIGHT, UP
 
 
-class RightHandPentti(TrackerPentti):
+class RightHandPentti(TrackerPentti, UsablePentti):
     """
     This Pentti knows that by having your right (or left) hand constantly on a
     wall shoud eventually take you to an exit. Assuming there's no loops in the
@@ -23,7 +21,10 @@ class RightHandPentti(TrackerPentti):
         super().__init__(map)
         self._history: List[Map] = [map]
 
-    def right_hand_escape(self, limit = 10000) -> None:
+    def escape_maze(self, limit: int = 10000):
+        self._right_hand_escape(limit)
+
+    def _right_hand_escape(self, limit = 10000) -> None:
         self._solve_maze(self._move_by_right_hand_rule, limit)
 
     def _move_by_right_hand_rule(self):

@@ -3,11 +3,11 @@ CLI entry point for the maze solver.
 """
 
 import argparse
-from character.pentti import Pentti
 
-from map.map import Map
 from character.randompentti import RandomPentti
 from character.righthandpentti import RightHandPentti
+from character.usablepentti import UsablePentti
+from map.map import Map
 
 parser = argparse.ArgumentParser(description="CLI to helping Pentti escape his doom.")
 parser.add_argument(
@@ -39,12 +39,12 @@ parser.add_argument(
 if __name__ == "__main__":
     args = parser.parse_args()
 
-    pentti: Pentti = None
+    pentti: UsablePentti = None
     map = Map(args.map)
 
     if args.pentti == "random":
         pentti = RandomPentti(map)
-        pentti.random_escape(args.limit)
     if args.pentti == "righthandrule":
         pentti = RightHandPentti(map)
-        pentti.right_hand_escape(args.limit)
+
+    pentti.escape_maze(args.limit)
