@@ -25,6 +25,22 @@ class Pentti:
     def orientation(self) -> str:
         return self._orientation
 
+    @property
+    def left(self) -> Tuple[int, int]:
+        return (self._pos["row"], self._pos["col"] - 1)
+
+    @property
+    def right(self) -> Tuple[int, int]:
+        return (self._pos["row"], self._pos["col"] + 1)
+
+    @property
+    def up(self) -> Tuple[int, int]:
+        return (self._pos["row"] - 1, self._pos["col"])
+
+    @property
+    def down(self) -> Tuple[int, int]:
+        return (self._pos["row"] + 1, self._pos["col"])
+
     def move_up(self) -> None:
         self._pos.update({"row": self._pos["row"] - 1})
         self._orientation = UP
