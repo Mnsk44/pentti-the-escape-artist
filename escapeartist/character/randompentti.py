@@ -18,7 +18,6 @@ class RandomPentti(TrackerPentti, UsablePentti):
 
     def __init__(self, map: Map) -> None:
         super().__init__(map)
-        self._history: List[Map] = [map]
 
     def escape_maze(self, limit: int = 10000):
         self._random_escape(limit)

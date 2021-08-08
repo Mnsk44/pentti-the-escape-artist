@@ -22,6 +22,7 @@ class TrackerPentti(Pentti):
     def __init__(self, map: Map) -> None:
         super().__init__(*map.start_position())
         self._map = map
+        self._history: List[Map] = [map]
 
     def possible_moves(self) -> List[Callable]:
         moves = []

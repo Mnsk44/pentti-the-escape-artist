@@ -19,7 +19,6 @@ class RightHandPentti(TrackerPentti, UsablePentti):
 
     def __init__(self, map: Map) -> None:
         super().__init__(map)
-        self._history: List[Map] = [map]
 
     def escape_maze(self, limit: int = 10000):
         self._right_hand_escape(limit)
