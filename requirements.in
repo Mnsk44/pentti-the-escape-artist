@@ -3,3 +3,4 @@ pytest
 black
 mypy
 Pillow
+dash
