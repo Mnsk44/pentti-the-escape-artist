@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
     if args.gif:
         maptoimage = MapToImage()
-        maptoimage.convert(pentti._history)
+        maptoimage.convert(pentti._history + [pentti._map])
         maptoimage.save_images_as_gif()
 
     if args.image:

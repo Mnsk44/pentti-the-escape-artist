@@ -7,6 +7,7 @@ it along the way. The basic assumption is that Pentti can only see his immediate
 adjacent tiles.
 """
 
+from copy import deepcopy
 from typing import Callable, List
 
 from character.pentti import Pentti
@@ -66,7 +67,7 @@ class TrackerPentti(Pentti):
 
     def _solve_maze(self, move_rule: Callable, limit: int = 10000) -> None:
         for round in range(limit):
-            self._history.append(self._map)
+            self._history.append(deepcopy(self._map))
             self._mark_visited()
 
             move_rule()

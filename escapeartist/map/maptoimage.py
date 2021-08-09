@@ -6,7 +6,7 @@ from typing import List
 from PIL import Image
 
 from map.map import Map
-from util.constants import BLOCK, EXIT, PENTTI, SPACE, VICTORY, VISITED
+from util.constants import BLOCK, EXIT, PENTTI, SPACE, START, VICTORY, VISITED
 
 
 class MapToImage:
@@ -19,6 +19,7 @@ class MapToImage:
             SPACE: (255, 255, 255),
             PENTTI: (255, 0, 255),
             VICTORY: (255, 255, 0),
+            START: (0, 255, 255),
         }
 
     def convert(self, maps: List[Map]) -> Image:
@@ -40,6 +41,5 @@ class MapToImage:
             "solution.gif",
             save_all=True,
             append_images=self._images[1:],
-            duration=500,
-            loop=0,
+            duration=50,
         )

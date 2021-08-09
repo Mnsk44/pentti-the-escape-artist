@@ -72,7 +72,7 @@ class BFSPentti(UsablePentti):
         self._map = pentti._map
 
     def _document_movements(self, pentti: TrackerPentti):
-        self._history.append(self._map)
+        self._history.append(deepcopy(self._map))
         self._mark_visited(pentti.position())
         pentti._mark_visited()
 
